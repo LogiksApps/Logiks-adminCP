@@ -1,0 +1,5 @@
+header=Login Log Of Users
+datatable_table=lgks_log_login
+datatable_cols=site,count(*)
+engine=piechart
+datatable_params=rptOptions.groupField::["site"];rptOptions.sortname::"site";rptOptions.grouping=true;

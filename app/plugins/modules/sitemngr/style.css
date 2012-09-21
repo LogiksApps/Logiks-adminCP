@@ -1,0 +1,29 @@
+#toolbar button#toolbtn_5 {
+	width:120px;
+}
+input {
+	border:1px solid #aaa;
+	width:92%;
+	margin-left:10px;
+}
+#sitetable select {
+	width:100% !important;
+}
+#sitetable tr.active {
+	background:#EEE;
+}
+#sitetable td.access, #sitetable td.devmode {background-color:#F8FFE0 !important;}
+#sitetable tr {cursor:pointer;}
+
+#appimageManager tbody input[type=radio] {
+	width:20px;float:left;
+}
+#appimageManager tbody td {
+	cursor:pointer;
+}
+.exporticon {background:transparent url(images/export.png) no-repeat left center; width:18px; height:18px;padding-left:24px;}
+.importicon {background:transparent url(images/import.png) no-repeat left center; width:18px; height:18px;padding-left:24px;}
+.appimageicon {background:transparent url(images/appimage.png) no-repeat left center; width:18px; height:18px;padding-left:24px;}
+
+.minibtn {width:0px;margin-right:3px;float:right;}
+.minibtn:hover {opacity:0.5;}

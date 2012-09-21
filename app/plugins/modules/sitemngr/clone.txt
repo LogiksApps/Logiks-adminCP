@@ -1,0 +1,18 @@
+Types :: Exact,Structural,BareBones
+
+
+Exact
+-----
+Full Folder Copy (except tmp)
+Full DB Copy (Schema,All Data)
+
+
+Structural
+----------
+Folder Copy (except tmp,userdata)
+DB Copy (Schema,System)
+
+BareBones
+---------
+Folder Copy (except tmp,userdata)
+DB Copy (Schema)

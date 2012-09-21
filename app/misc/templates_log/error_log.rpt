@@ -1,0 +1,3 @@
+header=System Error Log
+datatable_table=lgks_log_error
+datatable_cols=id,date,time,site,user,error_code,error_msg,error_log,client,user_agent

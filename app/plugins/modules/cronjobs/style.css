@@ -1,0 +1,60 @@
+h3 {
+	padding:0px;margin:0px;
+	padding-bottom:2px;
+}
+
+#datatable thead th {
+	height:22px;
+	border-bottom:2px solid #777;
+}
+#datatable tbody td {
+	padding:2px;
+}
+#datatable tbody tr:not(.subheader):hover td {
+	background:#E2FFC9;
+	cursor:pointer;
+}
+#datatable tbody tr.active td {
+	background:#C9FFDE;
+	padding:2px;
+}
+#datatable tbody tr.selected td {
+	background:#C9FFDE;
+	padding:2px;
+}
+.forms input[type=text],.forms select {
+	width:85%;
+	border:1px solid #aaa;
+	height:21px;
+}
+.forms td {padding:3px;}
+.forms ul {padding:0px;margin:4px;margin-left:4px;}
+.forms ul>li {padding:0px;margin:4px;margin-left:10px;}
+.forms ul>ul>li {padding:0px;margin:4px;margin-left:10px;list-style:none;}
+.forms .uploadbutton {
+	background:url(upload.png) no-repeat center center;
+	float:right;
+	width:26px;
+	height:26px;
+	cursor:pointer;
+}
+.forms .uploadbutton:hover {
+	border:2px solid #aaa;
+	width:22px;
+	height:22px;
+}
+
+.scripteditbutton {
+	background:url(edit.png) no-repeat center center;
+	float:right;
+	width:20px;
+	height:20px;
+	cursor:pointer;
+}
+.scripteditbutton:hover {
+	border:2px solid #aaa;
+	width:15px;
+	height:15px;
+}
+
+#createform,#editform {display:none;}

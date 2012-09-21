@@ -1,0 +1,37 @@
+{
+	"template":"fullScreen",
+	"layout":{
+		"header":{
+			"component":"comps/header.php",
+			"enable":true
+		},
+		"banner":{
+			"component":"comps/footer.php",
+			"enable":false
+		},
+		"sidebar":{
+			"component":"comps/sidebar.php",
+			"enable":true
+		},
+		"content":{
+			"component":"comps/content.php",
+			"enable":true
+		},
+		"prefooter":{
+			"component":"comps/footer.php",
+			"enable":false
+		},
+		"footer":{
+			"component":"comps/footer.php",
+			"enable":false
+		},
+		"copyright":{
+			"component":"comps/copyright.php",
+			"enable":true
+		}
+	},
+	"css":"",
+	"js":"",
+	"modules":"",
+	"enabled":true
+}

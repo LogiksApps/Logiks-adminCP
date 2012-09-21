@@ -1,0 +1,3 @@
+header=System Log
+datatable_table=lgks_log_system
+datatable_cols=id,date,time,site,user,priority,category,module,source,log_data,client,user_agent

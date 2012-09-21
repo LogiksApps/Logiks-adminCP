@@ -1,0 +1,4 @@
+header=Login Log Of Users
+datatable_table=lgks_log_login
+datatable_cols=id,date,user,site,login_time,logout_time,sys_spec,user_agent,status
+engine=grid

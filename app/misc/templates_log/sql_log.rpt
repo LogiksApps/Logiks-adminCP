@@ -1,0 +1,4 @@
+header=SQL Query Executed Over Time
+datatable_table=lgks_log_sql
+datatable_cols=id,date,time,site,page,sql_query,userid,msg
+
