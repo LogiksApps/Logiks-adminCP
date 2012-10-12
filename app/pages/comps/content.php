@@ -2,8 +2,9 @@
 if(!defined('ROOT')) exit('No direct script access allowed');
 //$_SESSION["LGKS_EDITOR_FPATH"]=ROOT;
 
-loadModule("page");
-printPageContent("workspace");
+//loadModule("page");
+//printPageContent("workspace");
+loadModule("tabbedspace");
 
 _js(array("jquery.mailform"));
 ?>

@@ -1,6 +1,7 @@
 <?php
-if (!defined('ROOT')) exit('No direct script access allowed');
+if(!defined('ROOT')) exit('No direct script access allowed');
 checkServiceSession();
+user_admin_check(true);
 
 $p="";
 if(isset($_REQUEST["pwd"])) {

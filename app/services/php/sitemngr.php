@@ -1,7 +1,7 @@
 <?php
-if (!defined('ROOT')) exit('No direct script access allowed');
+if(!defined('ROOT')) exit('No direct script access allowed');
 checkServiceSession();
-isAdminSite();
+user_admin_check(true);
 
 if(!is_dir(ROOT.CACHE_FOLDER."sitemanager/")) {
 	if(mkdir(ROOT.CACHE_FOLDER."sitemanager/",0777,true)) {

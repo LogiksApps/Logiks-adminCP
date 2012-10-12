@@ -1,4 +1,6 @@
 <?php
+user_admin_check(true);
+
 loadModule("dashboard")
 ?>
 <style>

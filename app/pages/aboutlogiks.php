@@ -1,5 +1,5 @@
 <?php
-	if (!defined('ROOT')) exit('No direct script access allowed');
+if(!defined('ROOT')) exit('No direct script access allowed');
 ?>
 <style>
 html,body {

@@ -23,6 +23,11 @@ printPageContent("apppage",$params);
 <button onclick="showHelp()" title="Help Contents" ><div class="helpicon">Help</div></button>
 <?php } ?>
 <?php function printContent() { ?>
+<style>
+#page .toolbar>.left {
+	padding-top:0px;
+}
+</style>
 <table id=datatable class='datatable' width=99% cellpadding=0 cellspacing=0 border=1 style='margin:5px;border:1px solid #aaa;'>
 	<thead>
 		<tr align=center class='ui-widget-header'>

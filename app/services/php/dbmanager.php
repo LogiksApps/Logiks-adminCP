@@ -1,7 +1,7 @@
 <?php
-if (!defined('ROOT')) exit('No direct script access allowed');
+if(!defined('ROOT')) exit('No direct script access allowed');
 checkServiceSession();
-isAdminSite();
+user_admin_check(true);
 
 loadHelpers("specialcfgfiles");
 

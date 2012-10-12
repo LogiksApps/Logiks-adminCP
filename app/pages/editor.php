@@ -1,4 +1,6 @@
 <?php
+user_admin_check(true);
+
 loadModule("editor");
 if(isset($_REQUEST['editor'])) {
 	if(in_array($_REQUEST['editor'],listEditors())) {

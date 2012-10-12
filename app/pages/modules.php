@@ -1,6 +1,6 @@
 <?php
-if (!defined('ROOT')) exit('No direct script access allowed');
-session_check(true);
+if(!defined('ROOT')) exit('No direct script access allowed');
+user_admin_check(true);
 
 $module=$_REQUEST["mod"];
 $p=checkModule($module);

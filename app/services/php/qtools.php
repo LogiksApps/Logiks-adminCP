@@ -1,6 +1,7 @@
 <?php
-if (!defined('ROOT')) exit('No direct script access allowed');
+if(!defined('ROOT')) exit('No direct script access allowed');
 checkServiceSession();
+user_admin_check(true);
 
 if(isset($_REQUEST["mode"])) {
 	if($_REQUEST["mode"]=="savequickbar") {

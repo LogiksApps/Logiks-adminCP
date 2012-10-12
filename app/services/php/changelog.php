@@ -1,6 +1,7 @@
 <?php
-if (!defined('ROOT')) exit('No direct script access allowed');
+if(!defined('ROOT')) exit('No direct script access allowed');
 checkServiceSession();
+user_admin_check(true);
 
 $sFrmt="<div class='file'><b style='color:green;margin-right:4px;'>%d</b><a class=viewlink href='services/?scmd=changelog&mode=viewfile&file=%s' target=_blank>%s</a><a class=downloadlink href='services/?scmd=changelog&mode=downloadfile&file=%s'><i style='color:blue;margin-left:10px;'>Download</i></a><div style='float:right'>%s</div></div>";//
 $date1=date("Y-m-d G:m:s");

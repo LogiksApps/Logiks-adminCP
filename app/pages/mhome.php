@@ -1,6 +1,6 @@
 <?php
-if (!defined('ROOT')) exit('No direct script access allowed');
-
+if(!defined('ROOT')) exit('No direct script access allowed');
+user_admin_check(true);
 ?>
 <div data-role='page' data-theme='<?=$theme_page?>'>
 	<div data-role='header' data-theme='<?=$theme_header?>' data-nobackbtn="false">

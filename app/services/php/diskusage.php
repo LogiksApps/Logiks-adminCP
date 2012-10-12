@@ -1,6 +1,7 @@
 <?php
-if (!defined('ROOT')) exit('No direct script access allowed');
+if(!defined('ROOT')) exit('No direct script access allowed');
 checkServiceSession();
+user_admin_check(true);
 
 if(isset($_REQUEST["action"])) {
 	$user=$_SESSION['SESS_USER_ID'];

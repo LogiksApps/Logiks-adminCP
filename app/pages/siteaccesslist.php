@@ -1,5 +1,6 @@
 <?php
-if (!defined('ROOT')) exit('No direct script access allowed');
+if(!defined('ROOT')) exit('No direct script access allowed');
+user_admin_check(true);
 
 $sid=md5("salist_".rand(1000,999999)._timestamp());
 

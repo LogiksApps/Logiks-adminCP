@@ -1,6 +1,8 @@
 <?php
 if(!defined('ROOT')) exit('No direct script access allowed');
 session_check(true);
+user_admin_check(true);
+isAdminSite();
 
 _js(array("jquery.multiselect"));
 _css(array("jquery.multiselect"));
@@ -36,7 +38,7 @@ button.ui-multiselect {
 		<li><a href='#b'>Configurations</a></li>
 	</ul>
 	<div id=ctrlList style='overflow-y:auto;overflow-x:hidden;'>
-		<table class='datatable' width=50% cellpadding=2 cellspacing=0 border=0 style='margin-left:5px;'>
+		<table class='datatable' width=50% cellpadding=2 cellspacing=0 border=0 style='margin-left:5px;width:60%;'>
 			<thead>
 				<tr class='ui-widget-header'>
 					<!--<th>Group</th>-->
@@ -59,7 +61,7 @@ button.ui-multiselect {
 	</div>
 </div>
 <div style='display:none'>
-	<div id=privilegeDialog title='Set Control Privilege'>
+	<div id=privilegeDialog title='Set Control Privilege' align=center>
 		<select style='width:100%;' multiple>
 			
 		</select>
@@ -103,6 +105,7 @@ $(function() {
 				//alert(rel+v);
 				jqPopupDiv("#privilegeDialog").dialog({
 						resizable:false,
+						width:550,
 						height:200,
 						buttons:{
 							Select:function() {

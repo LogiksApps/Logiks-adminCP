@@ -1,5 +1,6 @@
 <?php
 if(!defined('ROOT')) exit('No direct script access allowed');
+user_admin_check(true);
 
 if(isset($_REQUEST["cfg"])) {
 	$cfg=$_REQUEST["cfg"];

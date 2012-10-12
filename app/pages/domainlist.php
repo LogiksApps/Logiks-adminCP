@@ -1,6 +1,6 @@
 <?php
 if (!defined('ROOT')) exit('No direct script access allowed');
-session_check(true);
+user_admin_check(true);
 
 loadModule("page");
 
