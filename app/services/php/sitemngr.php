@@ -613,14 +613,14 @@ function configureAppCfg($app,$data) {
 			return false;
 		}
 	}
-	
+	$cfgArr=array();
 	//Configure apps.cfg file
 	if(file_exists($f1)) {
 		$cfgArr=SpecialCfgFiles::LoadCfgFile($f1);
 		$cfgArr['DEFINE']['APPS_NAME']=$data["sitename"];
 		SpecialCfgFiles::SaveCfgFile($f1,$cfgArr);
 	}
-	
+	$cfgArr=array();
 	//Configure db.cfg file
 	if(strlen($data["sitedbhost"])>0 && strlen($data["sitedbname"])>0) {
 		if(file_exists($f2)) {
