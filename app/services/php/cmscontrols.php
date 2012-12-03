@@ -15,6 +15,10 @@ if(isset($_REQUEST["action"])) {
 			foreach($data as $a=>$b) {
 				$menuControls[$b['id']]=$b;
 			}
+			
+			$dbTableList=_db(true)->getTableList();
+			$moduleList=getModuleList();
+			
 			$data=array();
 			foreach($menuControls as $a=>$b) {
 				$mgroup="";
@@ -24,12 +28,40 @@ if(isset($_REQUEST["action"])) {
 				}
 				
 				$s="<tr rel='{$a}'>";
+				$xmsg="";
 				
+				if(!checkAvailability($a,$b['to_check'],$moduleList,$dbTableList)) {
+					if(isset($_REQUEST['hide_notfound']) && $_REQUEST['hide_notfound']=="true") continue;
+					else {
+						$modulesToInstall=array();
+						$flds=explode(",",$b['to_check']);
+						foreach($flds as $toCheck) {
+							if(strlen($toCheck)>0 && strpos($toCheck,"#")>2) {
+								$ar=explode("#",$toCheck);
+								if(count($ar)>=2) {
+									if($ar[0]=="module") {
+										array_push($modulesToInstall,$ar[1]);
+									}
+								}
+							}
+						}
+						$modulesToInstall=implode(",",$modulesToInstall);
+						$xmsg="(Modules Not Found : $modulesToInstall)";
+						$s.="<td class='notokicon' title='Please Install Modules ::\n\t$modulesToInstall'></td>";
+					}
+				} else {
+					$s.="<td class='okicon' title=''></td>";
+				}
 				//$s.="<td class='iconpath' val='{$b['iconpath']}'>".loadMedia($b['iconpath'])."</td>";
-				
 				//$s.="<td class='menugroup' val='{$b['menugroup']}'>{$mgroup}</td>";
-				$s.="<td class='title'>{$b['title']}</td>";
-				$s.="<td class='category'>{$b['category']}</td>";
+				// class='ui-icon ui-icon-alert' style='display:inline-block;'
+				if(strlen($xmsg)>0) {
+					$s.="<td class='title' colspan=2>{$b['title']} <span style='color:red;'>$xmsg</span></td>";
+				} else {
+					$s.="<td class='title'>{$b['title']}</td>";
+					$s.="<td class='category'>{$b['category']}</td>";
+				}
+				
 				//$s.="<td class='link'>{$b['link']}</td>";
 				
 				$s.="<td class='minibutton privilege usericon' val='{$b['privilege']}'></td>";
@@ -79,13 +111,49 @@ if(isset($_REQUEST["action"])) {
 		}
 	}
 	
-	
-	
-	
-	
 	elseif($_REQUEST["action"]=="activitieslist") {
 		
-		
 	}
+}
+
+function checkAvailability($a,$toCheckData,$moduleList=array(),$dbTableList=array()) {
+	//"module","dbtable","page","dbcolumn"
+	if(strlen($toCheckData)>0) {
+		$flds=explode(",",$toCheckData);
+		$accept=true;
+		foreach($flds as $toCheck) {
+			if(strlen($toCheck)>0 && strpos($toCheck,"#")>2) {
+				$ar=explode("#",$toCheck);
+				if(count($ar)<2) {
+					$accept=false;
+					break;
+				} else {
+					if($ar[0]=="module") {
+						if(!in_array($ar[1],$moduleList)) $accept=false;
+					} elseif($ar[0]=="dbtable") {
+						//if(!in_array($ar[1],$dbTableList)) $accept=false;
+					}
+				}
+			}
+		}
+		return $accept;
+	}
+	return true;
+}
+
+function getModuleList() {
+	$modules=array();
+	
+	$mList=ROOT.PLUGINS_FOLDER."modules/";
+	$mList=scandir($mList);
+	unset($mList[0]);unset($mList[1]);
+	$modules=array_merge($modules,$mList);
+	
+	$mList=ROOT.APPS_FOLDER."cms/plugins/modules/";
+	$mList=scandir($mList);
+	unset($mList[0]);unset($mList[1]);
+	$modules=array_merge($modules,$mList);
+	
+	return $modules;
 }
 ?>

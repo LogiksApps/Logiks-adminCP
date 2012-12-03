@@ -42,6 +42,7 @@ button.ui-multiselect {
 			<thead>
 				<tr class='ui-widget-header'>
 					<!--<th>Group</th>-->
+					<th width=25px></th>
 					<th>Name</th>
 					<th>Category</th>
 					<!--<th>Link</th>-->
