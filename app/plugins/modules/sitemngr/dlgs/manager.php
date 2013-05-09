@@ -1,4 +1,4 @@
-<form action='services/?scmd=sitemngr&action=uploadappimage' method="post" enctype="multipart/form-data" target=importtargetframe onsubmit='return checkUploadFile();'>
+<form action='<?=SiteLocation?>services/?scmd=sitemngr&action=uploadappimage' method="post" enctype="multipart/form-data" target=importtargetframe onsubmit='return checkUploadFile();'>
 	<b>Upload AppImage To Install</b><br/>
 	<input name=appimage type=file style='width:450px;height:24px;border:0px;' />
 	<button type='submit'>Upload</button>

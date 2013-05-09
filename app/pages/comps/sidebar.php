@@ -7,7 +7,7 @@
 	<li><a href="#" onclick="$tabs.tabs('select',0);"><img src='<?=loadMedia("icons/sidebar/home.png")?>' />Dashboard</a></li>
 	<?php
 		loadModule("navigator",array("site"=>"admincp","dbtable"=>_dbtable("admin_links",true),"dbLink"=>getSysDBLink(),
-			"menuid"=>getConfig("DEFAULT_NAVIGATION")));
+			"menuid"=>getConfig("DEFAULT_NAVIGATION"),"orderBy"=>"id"));
 	?>
 </ul>
 <script language=javascript>

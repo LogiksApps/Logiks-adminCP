@@ -3,6 +3,12 @@ if(!defined('ROOT')) exit('No direct script access allowed');
 if(!defined('APPROOT')) exit('No direct script access allowed');
 
 $a=session_check(true);
+if($_SESSION['SESS_PRIVILEGE_ID']>getConfig("MAX_PRIVILEGE_ID")) {
+	$relink=SiteLocation . "login.php?site=".SITENAME;
+	redirectTo($relink,"SESSION Expired. Going To Login Page");
+	sessionExpired();
+	exit();
+}
 
 if(defined("APPS_CSS_TYPE")) $css->TypeOfDispatch(APPS_CSS_TYPE);
 if(defined("APPS_JS_TYPE")) $js->TypeOfDispatch(APPS_JS_TYPE);
@@ -45,7 +51,7 @@ if(isLayoutConfig($page)) {
 					$loaded=true;
 					echo "<style>html,body {width:100%;height:100%;padding:0px;margin:0px;}".getUserPageStyle(false)."</style>\n";
 					echo "</head>\n<body style='width:100%;height:100%;padding:0px;margin:0px;' ".getBodyContext().">\n";
-					include $f;	
+					include $f;
 					echo "</body>";
 					break;
 				}

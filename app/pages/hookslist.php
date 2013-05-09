@@ -38,7 +38,7 @@ html,body {
 .hooklist {
 	overflow:auto;
 }
-.hooklist ul {	
+.hooklist ul {
 	padding:3px;
 	margin:0px;
 	padding-left:10px;
@@ -47,7 +47,7 @@ html,body {
 .hooklist ul li {
 	margin-left:15px;
 	cursor:pointer;
-	padding-bottom:1px;	
+	padding-bottom:1px;
 }
 .hooklist ul>li>ul>li:hover {
 	text-decoration:underline;
@@ -76,7 +76,7 @@ html,body {
 						$t=ucwords($a);
 						echo "<option value='$a'>$t Hooks</option>";
 					}
-				}				
+				}
 			?>
 		</select>
 		<div id=hooklist class='hooklist'></div>
@@ -103,24 +103,24 @@ html,body {
 loadedCode="";
 loadedHook="";
 loadedPwd="";
-cmdLnk="services/?scmd=hooklist&site=<?=SITENAME?>";
+cmdLnk=getServiceCMD("hooklist");
 $(function() {
 	$(".page").css("visibility","visible");
-	
+
 	$("#list").css("height",($(".page").height())+"px");
 	$(".tabspace").css("height",($(".page").height()-40)+"px");
 	$("#hookeditor").css("height",($(".tabspace").height()-2)+"px");
 	$("#hooklist").css("height",($(".list").height()-30)+"px");
-	
+
 	$(".tabs").tabs();
 	$("button").button();
-	
+
 	loadEditor("hookeditor");
 	fixEditorSize("hookeditor");
 	readOnly();
-	
+
 	$(".editprops").hide();
-	
+
 	loadHookList();
 });
 function readOnly() {
@@ -135,7 +135,7 @@ function loadHookList() {
 					$(this).click(function() {
 							$(this).parents("li").find("ul").slideToggle();
 						});
-					
+
 				});
 			$(".hooklist ul>li>ul>li").click(function() {
 					loadCode($(this).attr("fl"));
@@ -147,30 +147,30 @@ function loadCode(idh, func) {
 	editor.setValue("");
 	lnk=cmdLnk+"&fetch="+idh+"&pwd="+$("#hookowner").val();
 	$.ajax({
-			url:lnk,			
+			url:lnk,
 			success:function(data, textStatus, jqXHR) {
 				loadedCode=data;
 				loadedHook=idh;
 				loadedPwd=$("#hookowner").val();
 				editor.setValue(data);
-				
+
 				$("*").css("cursor","auto");
 				$(".hooklist ul li").css("cursor","pointer");
 				$(".hooklist ul li h3").css("cursor","pointer");
 				$(".editprops").css("cursor","pointer");
-				
+
 				$(".editprops").show();
-				
+
 				readOnly();
-				
+
 				$("#loadedFile").html("::"+loadedHook);
-				
+
 				if(loadedHook.indexOf("~")>2) {
 					$(".editprops.block").html("Unblock");
 				} else {
 					$(".editprops.block").html("Block");
 				}
-				
+
 				if(func!=null) func();
 			},
 		});
@@ -188,9 +188,9 @@ function saveCode() {
 				data: q,
 				success:function(data, textStatus, jqXHR) {
 					if(data.length>0) lgksAlert(data);
-				},			  
+				},
 			});
-	}	
+	}
 }
 function deleteHook() {
 	if(loadedHook.length>0) {
@@ -203,7 +203,7 @@ function deleteHook() {
 							if(data.length>0) lgksAlert(data);
 							loadHookList();
 							closeHook();
-						},			  
+						},
 					});
 			});
 	}
@@ -212,12 +212,12 @@ function blockHook(btn) {
 	if(loadedHook.length>0) {
 		msg="Sure About Blocking Hook ::"+loadedHook;
 		title="Block Hook";
-		
+
 		if($(btn).text().toLowerCase()=="unblock") {
 			msg="Sure About Unblocking Hook ::"+loadedHook;
 			title="Unblock Hook";
 		}
-		
+
 		lgksConfirm(msg,title,function() {
 				lnk=cmdLnk+"&block="+loadedHook+"&pwd="+loadedPwd;
 				$.ajax({
@@ -227,7 +227,7 @@ function blockHook(btn) {
 							if(data.length>0) lgksAlert(data);
 							loadHookList();
 							closeHook();
-						},			  
+						},
 					});
 			});
 	}
@@ -248,7 +248,7 @@ function createHook() {
 							if(data.length>0) lgksAlert(data);
 							loadHookList();
 							loadCode(idh, function() { editCode() });
-						},			  
+						},
 					});
 				} else {
 					lgksAlert("New Name Must Be Like :: <b>state/new-name</b>");

@@ -45,7 +45,7 @@ printPageContent("apppage",$params);
 	</tbody>
 </table>
 <script language=javascript>
-cmdLnk="services/?scmd=dbmanager&site=<?=SITENAME?>";
+cmdLnk=getServiceCMD("dbmanager");
 $(function() {
 	$("#datatable tbody").delegate("tr","click",function() {
 			$(this).find("input[name=rowselect]").get(0).checked=true;
@@ -75,7 +75,7 @@ $(function() {
 function reloadList() {
 	url=cmdLnk+"&action=dbmstable";
 	$("#datatable tbody").html("<tr><td colspan=20 class='ajaxloading6'></td></tr>");
-	$("#datatable tbody").load(url,function() {			
+	$("#datatable tbody").load(url,function() {
 		});
 }
 function editDatabase() {

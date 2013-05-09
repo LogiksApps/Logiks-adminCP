@@ -122,7 +122,7 @@ if(isset($_REQUEST["action"])) {
 		$tmpl=$_POST["sitetemplate"];
 		$dbHost=$_POST["sitedbhost"];
 		
-		$tmpl=APPROOT.MISC_FOLDER."apptemplates/$tmpl";
+		$tmpl=APPROOT."resources/apptemplates/$tmpl";
 		
 		$db=null;
 		if(strlen($dbHost)>0) {
@@ -175,7 +175,7 @@ if(isset($_REQUEST["action"])) {
 				$f=SiteLocation.substr($f,strlen(ROOT));
 				echo "url:$f";
 			} elseif($saveas=="template") {
-				$dir=APPROOT.MISC_FOLDER."apptemplates/";
+				$dir=APPROOT."resources/apptemplates/";
 				copy($f,"{$dir}/".basename($f));
 			}
 		} else {
@@ -193,7 +193,7 @@ if(isset($_REQUEST["action"])) {
 			echo "Permissions For {$app} Reset Complete.";
 		}
 	} elseif($_REQUEST["action"]=="listappimages") {
-		$dir=APPROOT.MISC_FOLDER."apptemplates/";
+		$dir=APPROOT."resources/apptemplates/";
 		$dirs=scandir($dir);
 		unset($dirs[0]);unset($dirs[1]);
 		foreach($dirs as $a) {
@@ -212,7 +212,7 @@ if(isset($_REQUEST["action"])) {
 		}
 	} elseif($_REQUEST["action"]=="uploadappimage") {
 		$fname=$_FILES['appimage']['name'];
-		$appFile=APPROOT.MISC_FOLDER."apptemplates/$fname";
+		$appFile=APPROOT."resources/apptemplates/$fname";
 		$appText=substr($appFile,0,strlen($appFile)-3)."ini";
 		
 		if(!move_uploaded_file($_FILES['appimage']['tmp_name'], $appFile)) {
@@ -232,14 +232,14 @@ if(isset($_REQUEST["action"])) {
 		exit("<script>parent.reloadAppImagesList();</script>");
 	} elseif($_REQUEST["action"]=="deleteappimage") {
 		$app=$_REQUEST["appimage"];
-		$appFile=APPROOT.MISC_FOLDER."apptemplates/$app";
+		$appFile=APPROOT."resources/apptemplates/$app";
 		$appText=substr($appFile,0,strlen($appFile)-3)."ini";
 		
 		if(file_exists($appFile)) unlink($appFile);
 		if(file_exists($appText)) unlink($appText);
 	} elseif($_REQUEST["action"]=="infoappimage") {
 		$app=$_REQUEST["appimage"];
-		$appFile=APPROOT.MISC_FOLDER."apptemplates/$app";
+		$appFile=APPROOT."resources/apptemplates/$app";
 		$appText=substr($appFile,0,strlen($appFile)-3)."ini";
 		if(file_exists($appText)) {
 			$s=file_get_contents($appText);

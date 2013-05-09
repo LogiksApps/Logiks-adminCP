@@ -23,16 +23,16 @@ $webPath=getWebPath(__FILE__);
 
 printPageContent("apppage",$params);
 ?>
-<link href='<?=$webPath?>style.css' rel='stylesheet' type='text/css' media='all' /> 
+<link href='<?=$webPath?>style.css' rel='stylesheet' type='text/css' media='all' />
 <script language=javascript>
-cmdLnk="services/?scmd=cronjobs&site=<?=SITENAME?>";
+cmdLnk=getServiceCMD("cronjobs");
 $(function() {
 	$(".datefield").datepicker({
 			dateFormat:'<?=getConfig("DATE_FORMAT")?>',
 		});
 	$(".forms .uploadbutton").addClass("ui-corner-all");
 	$(".forms .uploadbutton").click(uploadScripts);
-	
+
 	$("#scriptUploader_file").change(function() {
 			$("#scriptUploader_file").parents("form").submit();
 		});
@@ -40,7 +40,7 @@ $(function() {
 			$("#scriptUploader_file").val("");
 		});
 	reloadList();
-	
+
 	loadEditor("scriptEditor_txt");
 });
 function reloadList() {
@@ -51,7 +51,7 @@ function reloadList() {
 			$("#datatable tr td").click(function() {
 					$(this).parents("tbody").find("input[type=radio]").removeAttr("checked","true");
 					$(this).parents("tbody").find("tr.selected").removeClass("selected");
-					
+
 					$(this).parents("tr").find("input[type=radio]").attr("checked","true");
 					$(this).parents("tr").addClass("selected");
 				});
@@ -103,12 +103,12 @@ function createJob(i) {
 	$("#createForm_"+i).find("input[type=text]").val("");
 	$("select.scriptlist").load(cmdLnk+"&action=tsk&tsk=listscripts");
 	$("select.sitelist").load(cmdLnk+"&action=tsk&tsk=listsites");
-	
+
 	$("#createForm_1").find("#schdulle_selector #cstm_prd").html("Custom Period");
 	$("#createForm_1").find("#schdulle_selector #cstm_prd").attr("value","*");
 	$("#createForm_1").find("#schdulle_selector").val("60");
 	$("#createForm_1").find("input[name=schdulle]").val("60");
-	
+
 	$("#editform").hide();
 	$("#createform").show();
 	osxPopupDiv("#createForm_"+i);
@@ -117,22 +117,22 @@ function editJob() {
 	if($("#datatable tr.selected").length>0) {
 		id=$("#datatable tr.selected").attr("rel");
 		tr=$("#datatable tr.selected");
-		
+
 		$("select.scriptlist").load(cmdLnk+"&action=tsk&tsk=listscripts", function() {
 				$("#createForm_1").find("select[name=scriptpath]").val(tr.find("td[name=scriptpath]").text());
 			});
 		$("select.sitelist").load(cmdLnk+"&action=tsk&tsk=listsites", function() {
 				$("#createForm_1").find("select[name=forsite]").val(tr.find("td[name=site]").text());
 			});
-		
+
 		$("#createForm_1").find("input[name=id]").val(id);
 		$("#createForm_1").find("input[name=run_only_once]").val(tr.find("td[name=run_once]").attr('v'));
-		
+
 		$("#createForm_1").find("input[name=title]").val(tr.find("td[name=title]").text());
 		$("#createForm_1").find("input[name=description]").val(tr.find("td[name=description]").text());
 		$("#createForm_1").find("select[name=method]").val(tr.find("td[name=method]").attr('v'));
 		$("#createForm_1").find("input[name=script_params]").val($("#datatable tr.selected").attr("params"));
-		
+
 		period=tr.find("td[name=schdulle]").attr("rel");
 		$("#createForm_1").find("input[name=schdulle]").val(period);
 		if($("#createForm_1").find("#schdulle_selector option[value="+period+"]").length>0) {
@@ -144,10 +144,10 @@ function editJob() {
 			$("#createForm_1").find("#schdulle_selector #cstm_prd").attr("value",period);
 			$("#createForm_1").find("#schdulle_selector").val(period);
 		}
-		
+
 		$("#createform").hide();
 		$("#editform").show();
-		
+
 		osxPopupDiv("#createForm_1");
 	}
 }
@@ -176,7 +176,7 @@ function execCmd(id,cmd) {
 }
 function updateSchdulePeriod(target,period, selector) {
 	if(period=="*") {
-		lgksPrompt("Please give the Period in number","Custom Period",null,function(period) {				
+		lgksPrompt("Please give the Period in number","Custom Period",null,function(period) {
 				if(period.length>0 && !isNaN(period)) {
 					$(target).val(period);
 					$(selector).find("option:selected").html("Custom Period = "+period);
@@ -199,11 +199,11 @@ function uploadScripts() {
 function saveForm(formDiv,mode) {
 	if($(formDiv).find("input[name=title]").val().length<=0) {
 		lgksAlert("Job Title Is Must");
-		return;		
+		return;
 	}
 	if($(formDiv).find("input[name=schdulle]").val().length<=0) {
 		lgksAlert("Job Schdule Is Must");
-		return;		
+		return;
 	}
 	lnk=cmdLnk+"&action="+mode;
 	//alert(lnk);

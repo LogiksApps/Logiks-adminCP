@@ -1,7 +1,7 @@
 <?php
 if (!defined('ROOT')) exit('No direct script access allowed');
 
-include APPROOT."config/tools.php";	
+include APPROOT."config/tools.php";
 
 loadModule("accessibility");
 ?>
@@ -17,12 +17,12 @@ loadModule("accessibility");
 	</a>
 	<a onclick="showProfileEditor()" style='cursor:pointer;'>
 	<?php
-		
+
 		if(isset($_SESSION['SESS_USER_NAME'])) echo "Welcome, <b>" . $_SESSION['SESS_USER_NAME']."</b>";
 	?>
 	</a>
-	
-	<?php 
+
+	<?php
 		loadAccessibilityButtons('#sidebar a');
 	?>
 </div>
@@ -44,7 +44,7 @@ loadModule("accessibility");
 				if(isset($b[2])) $target=$b[2]; else $target="";
 				if(isset($b[3])) $click=$b[3]; else $click="";
 				$s="<a class='button' title='$title' href='$href' target='$target' onclick=\"$click\">";
-				
+
 				$s.="<img src='".loadMedia("icons/launchbar/$a.png")."' width=32px height=32px /></a>";
 				echo $s;
 			}
@@ -91,7 +91,7 @@ function updateField(e) {
 	$(e).parents("tr").find("input").val($(e).val());
 }
 function saveQuickBar() {
-	lnk="services/?scmd=qtools&mode=savequickbar";
+	lnk=getServiceCMD("qtools")+"&mode=savequickbar";
 	s="";
 	$("#toolbareditmenu input").each(function() {
 			if($(this).val().length==0) $(this).val("#");

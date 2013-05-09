@@ -127,7 +127,7 @@ function createAppSite() {
 					Create:function() {
 						lnk=cmdLnk+"&action=createapp";
 						postAppForm("#createMode",lnk);
-						
+
 						/*if(s=="market") {
 								l="index.php?&site=admincp&page=installer&mode=apps";
 								parent.openInNewTab("Apps Market", l);
@@ -141,7 +141,7 @@ function cloneAppSite() {
 	if($("#sitetable tbody tr.active td.applink").text().length>0) {
 		app=$("#sitetable tbody tr.active td.applink").text();
 		title=$("#sitetable tbody tr.active td.title").text();
-		
+
 		$("#cloneMode input[type=text],input[type=password],textarea").val("");
 		$("#cloneMode input[name=baseapp]").val(app);
 		$("#cloneMode input[name=baseapptitle]").val(title);
@@ -167,7 +167,7 @@ function exportAppSite() {
 	if($("#sitetable tbody tr.active td.applink").text().length>0) {
 		app=$("#sitetable tbody tr.active td.applink").text();
 		title=$("#sitetable tbody tr.active td.title").text();
-		
+
 		$("#exportMode input[type=text],input[type=password],textarea").val("");
 		$("#exportMode input[name=sitecode]").val(app);
 		$("#exportMode input[name=sitename]").val(title);
@@ -234,7 +234,7 @@ function collectData(id) {
 				}
 			}
 		});
-		
+
 	return s;
 }
 function deleteAppSite() {

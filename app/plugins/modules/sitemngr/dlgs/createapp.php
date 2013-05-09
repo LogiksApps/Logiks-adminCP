@@ -8,7 +8,7 @@ Select A AppImage
 		<option value='market'>Install From AppMarket</option>
 		<optgroup label='Template Based'></optgroup>-->
 		<?php
-			$f=APPROOT.MISC_FOLDER."apptemplates/";
+			$f=APPROOT."resources/apptemplates/";
 			if(file_exists($f) && is_dir($f)) {
 				$f=scandir($f);
 				unset($f[0]);unset($f[1]);

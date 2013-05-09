@@ -59,27 +59,27 @@ function printContent() {
 </table>
 <div style='display:none'>
 	<div id=createMode class="ui-widget-content noshow" title="New Site Configurations">
-		<?php 
-			include "dlgs/createapp.php"; 
+		<?php
+			include "dlgs/createapp.php";
 		?>
 	</div>
 	<div id=cloneMode class="ui-widget-content noshow" title="Clone Site's Configurations">
-		<?php 
-			include "dlgs/cloneapp.php"; 
+		<?php
+			include "dlgs/cloneapp.php";
 		?>
 	</div>
 	<div id=exportMode class="ui-widget-content noshow" title="Export Existing Site">
-		<?php 
-			include "dlgs/exportapp.php"; 
+		<?php
+			include "dlgs/exportapp.php";
 		?>
 	</div>
 	<div id=appimageManager class="ui-widget-content noshow" title="AppImage Manager">
-		<?php 
+		<?php
 			include "dlgs/manager.php";
 		?>
 	</div>
 </div>
 <script>
-cmdLnk="services/?scmd=sitemngr&site=<?=SITENAME?>";
+cmdLnk=getServiceCMD("sitemngr");
 </script>
 <?php } ?>

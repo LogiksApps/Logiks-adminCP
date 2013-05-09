@@ -51,14 +51,17 @@ select {
 #createMode table,#createMode table td {
 	border:0px;
 }
+button.ui-multiselect.ui-widget {
+	height:30px;
+}
 </style>
 <div class='ui-widget-content ui-corner-all' style='width:80%;padding:4px;font-size:14px;color:maroon;text-align:justify;margin:auto;margin-top:5px;'>
-		Access Points defines the sites (multiple), which a user is allowed to access/switch after login. 
-		If multiple sites are selected, he will be allowed to access all of them with out relogin, simply 
+		Access Points defines the sites (multiple), which a user is allowed to access/switch after login.
+		If multiple sites are selected, he will be allowed to access all of them with out relogin, simply
 		by switching.<br/>
 		For Login, every user must be assigned atleast one Access Point which should have atleast one AppSite accessible.
 </div>
-<div id=createMode class="dialog ui-widget-content ui-corner-all" style="width:400px;height:170px;float:right;margin:10px;padding:5px;display:none;" title='Create Access Point'>
+<div id=createMode class="dialog ui-widget-content ui-corner-all" style="width:350px;height:170px;float:right;margin:10px;padding:5px;display:none;" title='Create Access Point'>
 	<table width=100% cellpadding=3 cellspacing=0 border=0 class='nostyle input'>
 		<input id=cm_id type=hidden value=0 />
 		<input id=edit_mode type=hidden value='new' />
@@ -83,9 +86,6 @@ select {
 					?>
 				</select>
 			</td>
-		</tr>
-		<tr>
-			<td colspan=10>&nbsp;</td>
 		</tr>
 		<tr>
 			<td colspan=10><hr/></td>
@@ -113,21 +113,14 @@ select {
 	<tbody>
 	</tbody>
 </table>
-<div style='display:none'>
-<div id=createMode class="ui-widget-content noshow" title="Access Point">
-	<table width=100% cellpadding=0 cellspacing=0 border=0>
-		
-	</table>
-</div>
-</div>
 <?php } ?>
 
 <script language=javascript>
-lnk="services/?scmd=datagrid&site=<?=SITENAME?>&action=load&datatype=html&sqlsrc=session&sqlid=<?=$sid?>";
+lnk=getServiceCMD("datagrid")+"&action=load&datatype=html&sqlsrc=session&sqlid=<?=$sid?>";
 $(function() {
 	$("button").button();
-	$("#applist").multiselect();
-	
+	$("#applist").multiselect({minWidth:273});
+
 	$("#accesstable tbody").delegate("tr","click",function() {
 			r=$(this).find("input[name=rowselector][type=radio]");
 			if(r.length>0) {
@@ -135,6 +128,9 @@ $(function() {
 				r.checked=true;
 				selectRow(r);
 			}
+		});
+	$("#accesstable tbody").delegate("td","click",function() {
+			selectRow(this);
 		});
 	$("#accesstable tbody").delegate("input[name=rowselector][type=radio]","click",function() {
 			selectRow(this);
@@ -151,7 +147,7 @@ $(function() {
 							loadAccessPointList();
 						}
 					});
-		});	
+		});
 	loadAccessPointList();
 })
 function loadAccessPointList() {
@@ -163,7 +159,7 @@ function loadAccessPointList() {
 						$(this).find("td[col=blocked]").html("<input name=blockAccesse type=checkbox checked />");
 					} else {
 						$(this).find("td[col=blocked]").html("<input name=blockAccesse type=checkbox />");
-					}					
+					}
 					$(this).prepend("<td align=center><input name=rowselector type=radio /></td>");
 				});
 		});
@@ -185,8 +181,8 @@ function editMap() {
 	$("#accesstable tr.active").each(function() {
 			$("#createMode input#cm_id").val($(this).find("td[col=id]").text());
 			$("#createMode input#cm_accesspoint").val($(this).find("td[col=master]").text());
-			$("#createMode #blocked").val($(this).find("td[col=blocked]").text().trim());
-			
+			$("#createMode #blocked").val($(this).find("td[col=blocked] input").is(":checked"));
+
 			$("#createMode #applist").val($(this).find("td[col=sites]").text().split(","));
 			$("#createMode #applist").multiselect("refresh");
 			$("#createMode input#edit_mode").val("edit");
@@ -196,14 +192,14 @@ function editMap() {
 function deleteMap() {
 	lgksConfirm("Do you want to delete the selected Access Points ?","Delete Access Points !",function() {
 			$("#accesstable tr.active td.serial_col").each(function() {
-				s="services/?scmd=formaction&action=delete";
+				s=getServiceCMD("formaction")+"&action=delete";
 				q="&submit_table=<?=_dbtable("access",true)?>&delete_id="+$(this).text();
 				processAJAXPostQuery(s,q,function(txt) {
 							loadAccessPointList();
 							if(txt.length>0) lgksAlert(txt);
 						});
 			});
-		});	
+		});
 }
 function saveForm() {
 	if($("#createMode input#edit_mode").val()=="new") {
@@ -221,11 +217,11 @@ function createAccessMap() {
 	accesspoint=$("#createMode input#cm_accesspoint").val();
 	apps=$("#createMode #applist").val();
 	blocked=$("#createMode #blocked").val();
-	
+
 	if(accesspoint.length>0) {
-		s="services/?scmd=formaction&action=submit&frmMode=insert";
+		s=getServiceCMD("formaction")+"&action=submit&frmMode=insert";
 		q="&id="+id+"&master="+accesspoint+"&sites="+apps+"&blocked="+blocked+"&submit_table=<?=_dbtable("access",true)?>";
-		
+
 		processAJAXPostQuery(s,q,function(txt) {
 				loadAccessPointList();
 			});
@@ -239,10 +235,11 @@ function saveAccessMap() {
 	accesspoint=$("#createMode input#cm_accesspoint").val();
 	apps=$("#createMode #applist").val();
 	blocked=$("#createMode #blocked").val();
-	
+
 	if(accesspoint.length>0 && apps.length>0) {
-		s="services/?scmd=formaction&action=submit&frmMode=update";
+		s=getServiceCMD("formaction")+"&action=submit&frmMode=update";
 		q="&id="+id+"&master="+accesspoint+"&sites="+apps+"&blocked="+blocked+"&submit_wherecol=id&submit_table=<?=_dbtable("access",true)?>";
+
 		processAJAXPostQuery(s,q,function(txt) {
 				loadAccessPointList();
 				if(txt.length>0) lgksAlert(txt);

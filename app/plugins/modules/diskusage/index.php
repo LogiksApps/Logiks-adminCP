@@ -29,7 +29,7 @@ html,body {
 	float:left;
 	margin-top:5px;
 	margin-left:9px;
-	border:2px solid #aaa;	
+	border:2px solid #aaa;
 }
 .page #usagechart #dataholder {
 	float:right;width:500px;display:none;
@@ -58,22 +58,22 @@ $(function() {
 	$("#loadingholder").hide();
 	loadFileTree("#filetree");
 });
-function loadFileTree(treeid) {	
-	s="services/?scmd=diskusage&action=filetree";
+function loadFileTree(treeid) {
+	s=getServiceCMD("diskusage")+"&action=filetree";
 	$(treeid).fileTree({root:$(treeid).attr('rel'),script:s,multiFolder:false}, function(file,type) {
 		if(type=="folder") {
 			createPie(file);
-		}		
-	});	
+		}
+	});
 }
 function createPieFromGraph(file) {
 	createPie(file,function() {
-			
+
 		});
 }
 function createPie(file,func) {
 	$("#loadingholder").show();
-	s="services/?scmd=diskusage&action=diskusetbl&dir="+file;
+	s=getServiceCMD("diskusage")+"&action=diskusetbl&dir="+file;
 	$("#usagechart #dataholder").load(s,function() {
 			loadChart();
 			$("#loadingholder").hide();
@@ -89,7 +89,7 @@ function loadChart() {
 	var rad=170;
 	var w=($("#usagechart").width()-rad)/2;
 	var h=($("#usagechart").height())/2;
-		
+
 	$("#dataholder tr").each(function () {
 		c1=$(this).children()[0];
 		c2=$(this).children()[1];
@@ -106,7 +106,7 @@ function loadChart() {
 	});
 	var r = Raphael("chartholder"),
 		pie = r.piechart(w, h, rad, values, { legend: labels, legendpos: "east", href: hrefs});
-	
+
 	r.text(w, 70, "Disk Usage Graph").attr({ font: "20px sans-serif" });
 	pie.hover(function () {
 		this.sector.stop();
