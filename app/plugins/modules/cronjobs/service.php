@@ -45,25 +45,25 @@ if(isset($_REQUEST["action"])) {
 		$cmd=$_REQUEST["cmd"];
 		$id=$_REQUEST["id"];
 		if($cmd=="block") {
-			$sql="update "._dbTable("cron_jobs",true)." set blocked='true' where id = $id";
+			$sql="update "._dbtable("cron_jobs",true)." set blocked='true' where id = $id";
 			_dbQuery($sql,true);
 		} elseif($cmd=="unblock") {
-			$sql="update "._dbTable("cron_jobs",true)." set blocked='false' where id = $id";
+			$sql="update "._dbtable("cron_jobs",true)." set blocked='false' where id = $id";
 			_dbQuery($sql,true);
 		} elseif($cmd=="post") {
-			$sql="update "._dbTable("cron_jobs",true)." set method='POST' where id = $id";
+			$sql="update "._dbtable("cron_jobs",true)." set method='POST' where id = $id";
 			_dbQuery($sql,true);
 		} elseif($cmd=="get") {
-			$sql="update "._dbTable("cron_jobs",true)." set method='GET' where id = $id";
+			$sql="update "._dbtable("cron_jobs",true)." set method='GET' where id = $id";
 			_dbQuery($sql,true);
 		} elseif($cmd=="run_once") {
-			$sql="update "._dbTable("cron_jobs",true)." set run_only_once='true' where id = $id";
+			$sql="update "._dbtable("cron_jobs",true)." set run_only_once='true' where id = $id";
 			_dbQuery($sql,true);
 		} elseif($cmd=="run_periods") {
-			$sql="update "._dbTable("cron_jobs",true)." set run_only_once='false' where id = $id";
+			$sql="update "._dbtable("cron_jobs",true)." set run_only_once='false' where id = $id";
 			_dbQuery($sql,true);
 		} elseif($cmd=="delete") {
-			$sql="delete from "._dbTable("cron_jobs",true)." where id = $id";
+			$sql="delete from "._dbtable("cron_jobs",true)." where id = $id";
 			_dbQuery($sql,true);
 		} elseif($cmd=="run") {
 			$p=new PCronQueue();
@@ -116,7 +116,7 @@ if(isset($_REQUEST["action"])) {
 		if(strlen($a)<=0 || $a==-1) echo "Error Creating Task/Job";
 	} elseif($_REQUEST["action"]=="edit") {
 		$id=$_REQUEST["id"];
-		$tbl=_dbTable("cron_jobs",true);
+		$tbl=_dbtable("cron_jobs",true);
 		
 		$arr=array("title","description","scriptpath","schdulle","script_params","method","run_only_once","forsite");
 		foreach($arr as $a=>$b) {

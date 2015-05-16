@@ -11,7 +11,7 @@ $bdir=ROOT;
 
 $logFile=ROOT.TMP_FOLDER."changelog/".date("Y-m-d G:m").".log";
 $patchFile=ROOT.TMP_FOLDER."patches/patch_".date("Y:m:d-H:i").".zip";
-$excludeDir=array("tmp","log","cache",".git");
+$excludeDir=array("tmp","userdata","log","cache",".git");
 $excludeFile=array(".gitignore");
 $writeLogToFile=false;
 

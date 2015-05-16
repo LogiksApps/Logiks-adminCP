@@ -18,7 +18,7 @@ if(!isset($_REQUEST["page"]) || strlen($_REQUEST["page"])==0) {
 }
 
 _js(array("jquery","jquery.ui"));
-_css(array("ajax","colors","style"));//icons
+_css(array("reset","ajax","colors","style"));//icons
 
 $css->loadCSS("ie6","*","ie6");
 $css->loadCSS("print","*","","print");

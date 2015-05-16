@@ -6,7 +6,7 @@ user_admin_check(true);
 if(isset($_REQUEST["action"])) {
 	
 	if($_REQUEST["action"]=="ctrllist") {
-		$sql="select * from "._dbTable('admin_links',true)." where (link is not null AND link<>'' AND link<>'#') AND site='cms' and menuid='cms_menu' order by id";
+		$sql="select * from "._dbtable('admin_links',true)." where (link is not null AND link<>'' AND link<>'#') AND site='cms' and menuid='cms_menu' order by id";
 		$result=_dbQuery($sql,true);
 		if($result) {
 			$data=_dbData($result);
@@ -87,9 +87,9 @@ if(isset($_REQUEST["action"])) {
 	elseif($_REQUEST["action"]=="toggle" && isset($_REQUEST['type'])) {
 		$sql="";
 		if($_REQUEST['type']=="blocked") {
-			$sql="UPDATE "._dbTable('admin_links',true)." SET blocked='{$_REQUEST['v']}' WHERE menuid='cms_menu' and id={$_REQUEST['rel']}";
+			$sql="UPDATE "._dbtable('admin_links',true)." SET blocked='{$_REQUEST['v']}' WHERE menuid='cms_menu' and id={$_REQUEST['rel']}";
 		} elseif($_REQUEST['type']=="onmenu") {
-			$sql="UPDATE "._dbTable('admin_links',true)." SET onmenu='{$_REQUEST['v']}' WHERE menuid='cms_menu' and id={$_REQUEST['rel']}";
+			$sql="UPDATE "._dbtable('admin_links',true)." SET onmenu='{$_REQUEST['v']}' WHERE menuid='cms_menu' and id={$_REQUEST['rel']}";
 		} else {
 			exit("<h3>Wrong Action</h3>");
 		}
@@ -104,7 +104,7 @@ if(isset($_REQUEST["action"])) {
 		}
 	}
 	elseif($_REQUEST["action"]=="privilege" && isset($_REQUEST['rel'])) {
-		$sql="UPDATE "._dbTable('admin_links',true)." SET privilege='{$_REQUEST['v']}' WHERE menuid='cms_menu' and id={$_REQUEST['rel']}";
+		$sql="UPDATE "._dbtable('admin_links',true)." SET privilege='{$_REQUEST['v']}' WHERE menuid='cms_menu' and id={$_REQUEST['rel']}";
 		_dbQuery($sql,true);
 		if(_db(true)->affected_rows()<=0) {
 			echo "Failed To Update Control.Try Again!";

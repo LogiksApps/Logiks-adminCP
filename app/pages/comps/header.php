@@ -6,7 +6,7 @@ include APPROOT."config/tools.php";
 loadModule("accessibility");
 ?>
 <div class='right'>
-	<a class='button clr_darkblue' href='<?=SiteLocation?>api/logout.php' style='float:right;margin-left:10px;padding-top:5px;padding-right:10px;' >
+	<a class='button clr_darkblue' href='<?=SiteLocation?>logout.php' style='float:right;margin-left:10px;padding-top:5px;padding-right:10px;' >
 		<img src='<?=loadMedia("icons/lock.png")?>' width=22px height=22px style='float:left;margin-top:-4px;' />Logout
 	</a>
 	<a class='button clr_darkmaroon' onclick="showSettingsEditor()" style='float:right;margin-left:10px;padding-top:5px;padding-right:10px;'>

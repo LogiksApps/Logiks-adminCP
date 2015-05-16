@@ -4,7 +4,7 @@ checkServiceSession();
 user_admin_check(true);
 
 if(isset($_REQUEST["action"])) {
-	$dmF=ROOT.CFG_FOLDER."jsondb/domainmap.json";
+	$dmF=ROOT.CFG_FOLDER."security/domainmap.json";
 	if(!file_exists($dmF)) {
 		DomainMap::createDefaultDomainMap();
 	}
