@@ -72,6 +72,24 @@ img {border:0px;}
 #header b {
 	color:white;
 }
+#header a.dropdown {
+	text-align:center;
+	font:13px bold San-seriff;
+	padding:14px;
+	padding-left: 40px;
+	line-height: 40px;
+	cursor:pointer;
+}
+#header a.dropdown img {
+	float: left;
+	display: inline-block;
+	margin: 9px;
+	margin-right: -35px;
+}
+#header a.dropdown:hover {
+	background: rgba(0,0,0,0.2);
+	text-decoration: none;
+}
 #header a.button {
 	border: 1px solid #222222;
 	-moz-border-radius:55px;
@@ -81,7 +99,7 @@ img {border:0px;}
 	width:80px;
 	height:20px;
 	text-align:center;
-	font:15px bold San-seriff;
+	font:13px bold San-seriff;
 	padding:2px;
 	padding-left:5px;
 	padding-right:5px;
@@ -109,7 +127,6 @@ img {border:0px;}
 #header a:hover{
 	text-decoration: underline;
 }
-
 /** Search Form **/
 #header .search {
 	width:200px;
@@ -329,6 +346,9 @@ img {border:0px;}
 	padding: 10px 0;
 	font-weight: bold;
 }
+#page .toolbar .button {
+	line-height: 15px;
+}
 #page .content h1, #page .content h2, #page .content h3, #page .content h4, #page .content h5{
 	color: #000000;
 	font-weight: bold;
@@ -399,17 +419,17 @@ img {border:0px;}
 #page table:not(.nostyle) thead th{
 	border-bottom: 1px solid #BDBDBD;
 }
-#page table:not(.nostyle) thead tr th{
+#page table:not(.nostyle) thead tr th {
 	font-weight: bold;
 	color: #151515;
 	font-size: 1.1em;
-	padding-bottom: 2px;
+	padding: 7px;
 }
 #page table:not(.nostyle) thead tr th a{
 	color: #151515;
 }
 #page table:not(.nostyle) tbody tr td{
-	height: 30px;
+	padding: 7px;
 	vertical-align: middle;
 	border-bottom: 1px solid #DADADA;
 	border-top: 1px solid #FFFFFF;
@@ -589,9 +609,6 @@ img {border:0px;}
 	height: 14px;
 	line-height: 23px;
 }
-#page .input select{
-	width: auto;
-}
 #page .input textarea{
 	width: 98%;
 	padding: 1%;
@@ -605,7 +622,8 @@ img {border:0px;}
 #page .medium input{
 	width: 50%;
 }
-#page .long input, #page .full input{
+#page .long input, #page .full input, 
+	#page .long select, #page .full select{
 	width: 98%;
 	padding: 0 1%;
 }
@@ -950,9 +968,6 @@ img {border:0px;}
 	-webkit-box-shadow: none;
 	-o-box-shadow: none;
 	box-shadow: none;
-}
-#page .toolbar>.left {
-	padding-top:10px;
 }
 /*Submit*/
 #page .submit input, #page .button{
@@ -1313,7 +1328,9 @@ img {border:0px;}
 	-khtml-border-radius: 3px;
 	border-radius: 3px 3px 3px 3px;
 }
-
+.errorbox li {
+	margin-left: 0px !important;
+}
 /** CORE UNIFORM **/
 .selector, .checker, .button, .radio, .uploader{
 	display: -moz-inline-box;
@@ -1455,7 +1472,7 @@ div.uploader input{
 #footer a.top:hover{background-position:0 -48px}
 #footer .copyright {float:right;position:absolute;bottom:5px;right:5px;color:white;font-size:11px;}
 
-table {
+table:not(.noborder) {
 	border:1px solid #ededed;
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
@@ -1466,15 +1483,19 @@ table th {
 	height:25px;
 	border:0px;
 }
-table td {
+table:not(.noborder) td {
 	border:0px;
 	border-right:1px solid #eee;
 	border-bottom:1px solid #eee;
 	height:25px;
 }
-table td:last-child {
+table:not(.noborder) td:last-child {
 	border-right:1px;
 }
-table tr:last-child td {
+table:not(.noborder) tr:last-child td {
 	border:0px;
+}
+
+.btnicon {
+	cursor: pointer;
 }
