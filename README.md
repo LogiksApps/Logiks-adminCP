@@ -1,6 +1,9 @@
 Logiks-AdminCP
 --------------
 
+Currently this project no longer supported. With Logiks 4.0 the new CMS 3.0 tookover
+all the tasks being done by admincp. Thus Logiks-admincp was abandoned
+
 Logiks-AdminCP is an AppSite built upon Logiks Framework to control and manage
 various properties of Logiks Installation. It is the central control panel for
 a Logiks Installation
