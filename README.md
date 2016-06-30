@@ -1,4 +1,4 @@
-Logiks-AdminCP
+Logiks-AdminCP (Obsolete, no further support available.)
 --------------
 
 Currently this project no longer supported. With Logiks 4.0 the new CMS 3.0 tookover
